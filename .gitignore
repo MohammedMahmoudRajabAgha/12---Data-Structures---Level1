@@ -1,0 +1,64 @@
+# Visual Studio user-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options
+.vs/
+*.VC.db
+*.VC.opendb
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# Intermediate / compiler files
+*.pdb
+*.ilk
+*.idb
+*.ipch
+*.tlog
+
+# Visual Studio Installer
+.vsconfig
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Visual Studio Code
+.vscode/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+
+# Test Results
+TestResults/
+
+# NuGet Packages
+*.nupkg
+packages/
+
+# Windows
+Thumbs.db
+Desktop.ini
