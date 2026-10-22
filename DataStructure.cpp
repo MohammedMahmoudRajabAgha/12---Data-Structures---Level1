@@ -1,36 +1,47 @@
 // ProgrammingAdvices.com
 // Mohammed Abu-Hadhoud
 
-#include <iostream>
 #include <stack>
+#include <iostream>
 using namespace std;
 
 int main()
-
 {
-    // create a stack of ints
-    stack <int> stkNumbers;
+    // stack container declaration
+    stack<int> MyStack1;
+    stack<int> MyStack2;
 
-    // push into stack
-    stkNumbers.push(10);
-    stkNumbers.push(20);
-    stkNumbers.push(30);
-    stkNumbers.push(40);
-    stkNumbers.push(50);
+    // pushing elements into first stack
+    MyStack1.push(10);
+    MyStack1.push(20);
+    MyStack1.push(30);
+    MyStack1.push(40);
 
-    // we can access the element by getting the top and popping
-    // until the stack is empty
-    cout << "count=" << stkNumbers.size() << endl;
+    // pushing elements into 2nd stack
+    MyStack2.push(50);
+    MyStack2.push(60);
+    MyStack2.push(70);
+   
+    // using swap() function to swap elements of stacks
+    MyStack1.swap(MyStack2);
 
-    cout << "Numbers are:\n";
-    while (!stkNumbers.empty()) {
-        // print top element
-        cout << stkNumbers.top() << "\n";
+    // printing the first stack
+    cout << "MyStack1 = ";
+    while (!MyStack1.empty()) {
+        cout << MyStack1.top() << " ";
+        MyStack1.pop();
+    }
 
-        // pop top element from stack
-        stkNumbers.pop();
+    // printing the second stack
+    cout << endl << "MyStack2 = ";
+    while (!MyStack2.empty()) {
+        cout << MyStack2.top() << " ";
+        MyStack2.pop();
     }
 
     system("pause>0");
+
     return 0;
+
+
 }
