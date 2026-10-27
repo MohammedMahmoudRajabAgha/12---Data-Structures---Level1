@@ -22,6 +22,20 @@ void InsertAtBeginning(clsNode*& head, int value)
     head = new_node;
 }
 
+clsNode* Find(clsNode* head, int value)
+{
+    while (head != NULL)
+    {
+        if (head->value == value)
+            return head;
+
+        head = head->next;
+    }
+
+    return NULL;
+
+}
+
 // Print the linked list
 void Print(clsNode* head)
 {
@@ -44,6 +58,17 @@ int main()
 
     Print(head);
 
+    clsNode* N1 = Find(head, 2);
+
+    if (N1 != NULL)
+    {
+        cout << "\nNode is Found :-)\n";
+        cout << N1->value << endl;
+    }
+    else
+    {
+        cout << "\nNode is NOT Found :-(\n";
+    }
 
     system("pause>0");
     return 0;
