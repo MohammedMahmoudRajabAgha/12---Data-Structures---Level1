@@ -36,6 +36,21 @@ clsNode* Find(clsNode* head, int value)
 
 }
 
+void InsertAfer(clsNode* prev_node, int Value)
+{
+    if (prev_node == NULL)
+    {
+        cout << "\nThe given previous node cannot be NULL";
+        return;
+    }
+
+    clsNode* new_node = new clsNode();
+    new_node->value = Value;
+    new_node->next = prev_node->next;
+
+    prev_node->next = new_node;
+}
+
 // Print the linked list
 void Print(clsNode* head)
 {
@@ -44,31 +59,27 @@ void Print(clsNode* head)
         cout << head->value << "  ";
         head = head->next;
     }
+
+    cout << endl;
 }
 
 int main()
 {
     clsNode* head = NULL;
 
-    InsertAtBeginning(head, 10);
-    InsertAtBeginning(head, 20);
-    InsertAtBeginning(head, 30);
-    InsertAtBeginning(head, 40);
-    InsertAtBeginning(head, 50);
+    InsertAtBeginning(head, 1);
+    InsertAtBeginning(head, 2);
+    InsertAtBeginning(head, 3);
+    InsertAtBeginning(head, 4);
+    InsertAtBeginning(head, 5);
 
     Print(head);
 
     clsNode* N1 = Find(head, 2);
 
-    if (N1 != NULL)
-    {
-        cout << "\nNode is Found :-)\n";
-        cout << N1->value << endl;
-    }
-    else
-    {
-        cout << "\nNode is NOT Found :-(\n";
-    }
+    InsertAfer(N1, 500);
+
+    Print(head);
 
     system("pause>0");
     return 0;
