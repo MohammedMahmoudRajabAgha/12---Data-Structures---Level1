@@ -51,6 +51,28 @@ void InsertAfer(clsNode* prev_node, int Value)
     prev_node->next = new_node;
 }
 
+void InsertAtEnd(clsNode* &head, int value)
+{
+    clsNode* new_node = new clsNode();
+    new_node->value = value;
+    new_node->next = NULL;
+
+    if (head == NULL)
+    {
+        head = new_node;
+        return;
+    }
+
+    clsNode* LastNode = head;
+    while (LastNode->next != NULL)
+    {
+        LastNode = LastNode->next;
+    }
+
+    LastNode->next = new_node;
+    return;
+}
+
 // Print the linked list
 void Print(clsNode* head)
 {
@@ -67,17 +89,15 @@ int main()
 {
     clsNode* head = NULL;
 
-    InsertAtBeginning(head, 1);
-    InsertAtBeginning(head, 2);
-    InsertAtBeginning(head, 3);
-    InsertAtBeginning(head, 4);
-    InsertAtBeginning(head, 5);
+    InsertAtEnd(head, 1);
+    InsertAtEnd(head, 2);
+    InsertAtEnd(head, 3);
+    InsertAtEnd(head, 4);
+    InsertAtEnd(head, 5);
 
     Print(head);
 
-    clsNode* N1 = Find(head, 2);
-
-    InsertAfer(N1, 500);
+    InsertAtBeginning(head, 0);
 
     Print(head);
 
