@@ -101,6 +101,36 @@ void DeleteFirstNode(clsNode* &head)
     delete Curr_Node;//free from memory
 }
 
+// Delete Last node
+void DeleteLastNode(clsNode*& head)
+{
+
+    if (head == NULL)
+    {
+        return;
+    }
+    
+    clsNode* Current = head;
+    clsNode * Prev = head;
+
+    if (Current->next == NULL) {
+        head = NULL;
+        delete Current;//free from memory
+        return;
+    }
+
+    // Find the key to be deleted
+    while (Current != NULL && Current->next != NULL) {
+        Prev = Current;
+        Current = Current->next;
+    }
+
+    // Remove the node
+    Prev->next = NULL;
+    delete Current;//free from memory
+}
+
+
 // Print the linked list
 void Print(clsNode* head)
 {
@@ -131,17 +161,17 @@ int main()
 
     cout << "\n\n*****************************\n";
     
-    DeleteFirstNode(head);
+    DeleteLastNode(head);
     Print(head);
     
     cout << "\n\n*****************************\n";
 
-    DeleteFirstNode(head);
+    DeleteLastNode(head);
     Print(head);
 
     cout << "\n\n*****************************\n";
 
-    DeleteFirstNode(head);
+    DeleteLastNode(head);
     Print(head);
 
     cout << "\n\n*****************************\n";
