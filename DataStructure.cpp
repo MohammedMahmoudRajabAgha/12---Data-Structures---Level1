@@ -22,35 +22,6 @@ void InsertAtBeginning(clsNode*& head, int value)
     head = new_node;
 }
 
-clsNode* Find(clsNode* head, int value)
-{
-    while (head != NULL)
-    {
-        if (head->value == value)
-            return head;
-
-        head = head->next;
-    }
-
-    return NULL;
-
-}
-
-void InsertAfer(clsNode* prev_node, int Value)
-{
-    if (prev_node == NULL)
-    {
-        cout << "\nThe given previous node cannot be NULL";
-        return;
-    }
-
-    clsNode* new_node = new clsNode();
-    new_node->value = Value;
-    new_node->next = prev_node->next;
-
-    prev_node->next = new_node;
-}
-
 void InsertAtEnd(clsNode* &head, int value)
 {
     clsNode* new_node = new clsNode();
@@ -71,6 +42,51 @@ void InsertAtEnd(clsNode* &head, int value)
 
     LastNode->next = new_node;
     return;
+}
+
+//void DeleteAllNode(clsNode*& head)
+//{
+//    while (head != NULL)
+//    {
+//        clsNode* temp = head;
+//        head = head->next;
+//
+//        delete temp;
+//    }
+//}
+
+void DeleteNode(clsNode*& head, int value)
+{
+    if (head == NULL)//Linked List is Empty
+    {
+        return;
+    }
+
+    clsNode* prev_node = head;
+    clsNode* curr_node = head;
+
+    if (head->value == value)
+    {
+        head = head->next;
+
+        delete prev_node;//free from memory
+        return;
+    }
+
+    //Find the key to be deleted
+    while (curr_node != NULL && curr_node->value != value)
+    {
+        prev_node = curr_node;
+        curr_node = curr_node->next;
+    }
+
+    //To Prevent This Status -> Prev->next = NULL->Next   ??? Error!! 
+    //if the value is not found->prev_node = LastNode, Curr_Node = NULL
+    if (curr_node == NULL) return;
+
+    //Remove the node
+    prev_node->next = curr_node->next;
+    delete curr_node;//free from memory
 }
 
 // Print the linked list
@@ -99,6 +115,24 @@ int main()
 
     InsertAtBeginning(head, 0);
 
+    Print(head);
+
+    cout << "\n\n*****************************\n";
+
+    cout << "\nDelete 0 -> ";
+    DeleteNode(head, 0);
+    Print(head);
+
+    cout << "\nDelete 3 -> ";
+    DeleteNode(head, 3);
+    Print(head);
+
+    cout << "\nDelete 5 -> ";
+    DeleteNode(head, 5);
+    Print(head);
+
+    cout << "\nDelete 50 -> ";
+    DeleteNode(head, 50);
     Print(head);
 
     system("pause>0");
