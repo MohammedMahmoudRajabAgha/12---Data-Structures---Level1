@@ -89,6 +89,18 @@ void DeleteNode(clsNode*& head, int value)
     delete curr_node;//free from memory
 }
 
+void DeleteFirstNode(clsNode* &head)
+{
+    if (head == NULL)
+        return;
+
+    clsNode* Curr_Node = head;
+
+    head = head->next;
+
+    delete Curr_Node;//free from memory
+}
+
 // Print the linked list
 void Print(clsNode* head)
 {
@@ -118,22 +130,21 @@ int main()
     Print(head);
 
     cout << "\n\n*****************************\n";
+    
+    DeleteFirstNode(head);
+    Print(head);
+    
+    cout << "\n\n*****************************\n";
 
-    cout << "\nDelete 0 -> ";
-    DeleteNode(head, 0);
+    DeleteFirstNode(head);
     Print(head);
 
-    cout << "\nDelete 3 -> ";
-    DeleteNode(head, 3);
+    cout << "\n\n*****************************\n";
+
+    DeleteFirstNode(head);
     Print(head);
 
-    cout << "\nDelete 5 -> ";
-    DeleteNode(head, 5);
-    Print(head);
-
-    cout << "\nDelete 50 -> ";
-    DeleteNode(head, 50);
-    Print(head);
+    cout << "\n\n*****************************\n";
 
     system("pause>0");
     return 0;
