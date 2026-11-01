@@ -59,6 +59,20 @@ void InsertAtBeginning(clsNode*& head, int value)
     //head = new_node;
 }
 
+clsNode* Find(clsNode* head, int value)
+{
+    while (head != NULL)
+    {
+        if (head->value == value)
+            return head;
+        
+        head = head->next;
+    }
+
+    return NULL;
+}
+
+
 void PrintclsNodeDetails(clsNode* head)
 {
 
@@ -75,7 +89,6 @@ void PrintclsNodeDetails(clsNode* head)
         cout << "NULL";
 
 }
-
 // Print the linked list
 void PrintListDetails(clsNode* head)
 
@@ -86,8 +99,6 @@ void PrintListDetails(clsNode* head)
         head = head->next;
     }
 }
-
-
 // Print the linked list
 void PrintList(clsNode* head)
 
@@ -107,17 +118,22 @@ int main()
 {
     clsNode* head = NULL;
 
-    InsertAtBeginning(head, 1);
-    InsertAtBeginning(head, 2);
-    InsertAtBeginning(head, 3);
-    InsertAtBeginning(head, 4);
     InsertAtBeginning(head, 5);
-    InsertAtBeginning(head, 100);
+    InsertAtBeginning(head, 4);
+    InsertAtBeginning(head, 3);
+    InsertAtBeginning(head, 2);
+    InsertAtBeginning(head, 1);
 
     cout << "\nLinked List Contenet:\n";
     PrintList(head);
-    PrintListDetails(head);
     
+
+    clsNode* N1 = Find(head, 2);
+   
+    if (N1 != NULL)
+        cout << "\n\nNode Found :-)\n";
+    else
+        cout << "\n\nNode is NOT Found :-(\n";
 
     system("pause>0");
     return 0;
