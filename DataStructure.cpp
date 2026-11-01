@@ -11,42 +11,113 @@ public:
     clsNode* prev;
 };
 
+void InsertAtBeginning(clsNode*& head, int value)
+{
+
+    /*
+      1-Create a new node with the desired value.
+      2-Set the next pointer of the new node to the current head of the list.
+      3-Set the previous pointer of the current head to the new node.
+      4-Set the new node as the new head of the list.
+  */
+
+    clsNode* new_node = new clsNode();
+
+    new_node->value = value;
+    new_node->next = head;
+    new_node->prev = NULL;
+
+    if (head != NULL)
+    {
+        head->prev = new_node;
+    }
+
+    head = new_node;
+
+
+    //My Solution
+
+    //clsNode* new_node = new clsNode();
+    // 
+    //if (head == NULL)
+    //{
+    //    new_node->value = value;
+    //    /////////////////////////////////
+    //    new_node->next = NULL;
+    //    new_node->prev = NULL;
+    //    ////////////////////////////////
+    //    head = new_node;
+    //    return;
+    //}
+    //
+    //new_node->value = value;
+    //new_node->next = head;
+    ////////////////////////
+    //new_node->prev = NULL;
+    ///////////////////////
+    //head->prev = new_node;
+    //head = new_node;
+}
+
+void PrintclsNodeDetails(clsNode* head)
+{
+
+    if (head->prev != NULL)
+        cout << head->prev->value;
+    else
+        cout << "NULL";
+
+    cout << " <--> " << head->value << " <--> ";
+
+    if (head->next != NULL)
+        cout << head->next->value << "\n";
+    else
+        cout << "NULL";
+
+}
+
+// Print the linked list
+void PrintListDetails(clsNode* head)
+
+{
+    cout << "\n\n";
+    while (head != NULL) {
+        PrintclsNodeDetails(head);
+        head = head->next;
+    }
+}
+
+
+// Print the linked list
+void PrintList(clsNode* head)
+
+{
+    cout << "NULL <--> ";
+    while (head != NULL) {
+        cout << head->value << " <--> ";
+        head = head->next;
+    }
+    cout << "NULL";
+
+}
+
+
+
 int main()
 {
     clsNode* head = NULL;
 
-    clsNode* Node1 = NULL;
-    clsNode* Node2 = NULL;
-    clsNode* Node3 = NULL;
+    InsertAtBeginning(head, 1);
+    InsertAtBeginning(head, 2);
+    InsertAtBeginning(head, 3);
+    InsertAtBeginning(head, 4);
+    InsertAtBeginning(head, 5);
+    InsertAtBeginning(head, 100);
 
-    // allocate 3 nodes in the heap
-    Node1 = new clsNode();
-    Node2 = new clsNode();
-    Node3 = new clsNode();
-
-    // Assign value values
-    Node1->value = 1;
-    Node2->value = 2;
-    Node3->value = 3;
-
-    // Connect nodes
-    Node1->next = Node2;
-    Node1->prev = NULL;
-
-    Node2->next = Node3;
-    Node2->prev = Node1;
-
-    Node3->next = NULL;
-    Node3->prev = Node2;
-
-    // print the linked list value
-    head = Node1;
-
-    while (head != NULL)
-    {
-        cout << head->value << " ";
-        head = head->next;
-    }
+    cout << "\nLinked List Contenet:\n";
+    PrintList(head);
+    PrintListDetails(head);
+    
 
     system("pause>0");
     return 0;
