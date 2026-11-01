@@ -1,180 +1,52 @@
 #include<iostream>
 using namespace std;
 
+//Doubly Linked List
+// Creating a node
 class clsNode
 {
 public:
     int value;
     clsNode* next;
-
+    clsNode* prev;
 };
-
-void InsertAtBeginning(clsNode*& head, int value)
-{
-    // Allocate memory to a node
-    clsNode* new_node = new clsNode();
-
-    // insert the data
-    new_node->value = value;
-    new_node->next = head;
-   
-    // Move head to new node
-    head = new_node;
-}
-
-void InsertAtEnd(clsNode* &head, int value)
-{
-    clsNode* new_node = new clsNode();
-    new_node->value = value;
-    new_node->next = NULL;
-
-    if (head == NULL)
-    {
-        head = new_node;
-        return;
-    }
-
-    clsNode* LastNode = head;
-    while (LastNode->next != NULL)
-    {
-        LastNode = LastNode->next;
-    }
-
-    LastNode->next = new_node;
-    return;
-}
-
-//void DeleteAllNode(clsNode*& head)
-//{
-//    while (head != NULL)
-//    {
-//        clsNode* temp = head;
-//        head = head->next;
-//
-//        delete temp;
-//    }
-//}
-
-void DeleteNode(clsNode*& head, int value)
-{
-    if (head == NULL)//Linked List is Empty
-    {
-        return;
-    }
-
-    clsNode* prev_node = head;
-    clsNode* curr_node = head;
-
-    if (head->value == value)
-    {
-        head = head->next;
-
-        delete prev_node;//free from memory
-        return;
-    }
-
-    //Find the key to be deleted
-    while (curr_node != NULL && curr_node->value != value)
-    {
-        prev_node = curr_node;
-        curr_node = curr_node->next;
-    }
-
-    //To Prevent This Status -> Prev->next = NULL->Next   ??? Error!! 
-    //if the value is not found->prev_node = LastNode, Curr_Node = NULL
-    if (curr_node == NULL) return;
-
-    //Remove the node
-    prev_node->next = curr_node->next;
-    delete curr_node;//free from memory
-}
-
-void DeleteFirstNode(clsNode* &head)
-{
-    if (head == NULL)
-        return;
-
-    clsNode* Curr_Node = head;
-
-    head = head->next;
-
-    delete Curr_Node;//free from memory
-}
-
-// Delete Last node
-void DeleteLastNode(clsNode*& head)
-{
-
-    if (head == NULL)
-    {
-        return;
-    }
-    
-    clsNode* Current = head;
-    clsNode * Prev = head;
-
-    if (Current->next == NULL) {
-        head = NULL;
-        delete Current;//free from memory
-        return;
-    }
-
-    // Find the key to be deleted
-    while (Current != NULL && Current->next != NULL) {
-        Prev = Current;
-        Current = Current->next;
-    }
-
-    // Remove the node
-    Prev->next = NULL;
-    delete Current;//free from memory
-}
-
-
-// Print the linked list
-void Print(clsNode* head)
-{
-    while (head != NULL)
-    {
-        cout << head->value << "  ";
-        head = head->next;
-    }
-
-    cout << endl;
-}
 
 int main()
 {
     clsNode* head = NULL;
 
-    InsertAtEnd(head, 1);
-    InsertAtEnd(head, 2);
-    InsertAtEnd(head, 3);
-    InsertAtEnd(head, 4);
-    InsertAtEnd(head, 5);
+    clsNode* Node1 = NULL;
+    clsNode* Node2 = NULL;
+    clsNode* Node3 = NULL;
 
-    Print(head);
+    // allocate 3 nodes in the heap
+    Node1 = new clsNode();
+    Node2 = new clsNode();
+    Node3 = new clsNode();
 
-    InsertAtBeginning(head, 0);
+    // Assign value values
+    Node1->value = 1;
+    Node2->value = 2;
+    Node3->value = 3;
 
-    Print(head);
+    // Connect nodes
+    Node1->next = Node2;
+    Node1->prev = NULL;
 
-    cout << "\n\n*****************************\n";
-    
-    DeleteLastNode(head);
-    Print(head);
-    
-    cout << "\n\n*****************************\n";
+    Node2->next = Node3;
+    Node2->prev = Node1;
 
-    DeleteLastNode(head);
-    Print(head);
+    Node3->next = NULL;
+    Node3->prev = Node2;
 
-    cout << "\n\n*****************************\n";
+    // print the linked list value
+    head = Node1;
 
-    DeleteLastNode(head);
-    Print(head);
-
-    cout << "\n\n*****************************\n";
+    while (head != NULL)
+    {
+        cout << head->value << " ";
+        head = head->next;
+    }
 
     system("pause>0");
     return 0;
