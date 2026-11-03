@@ -103,6 +103,41 @@ void InsertAfter(clsNode* current, int value)
     new_node->prev = current;
 }
 
+void InsertAtEnd(clsNode* &head, int value)
+{
+    /*
+        1-Create a new node with the desired value.
+        2-Traverse the list to find the last node.
+        3-Set the next pointer of the last node to the new node.
+        4-Set the previous pointer of the new node to the last node.
+    */
+
+
+    clsNode* new_node = new clsNode();
+    new_node->value = value;
+    new_node->next = NULL;
+
+    if (head == NULL)
+    {
+        new_node->prev = NULL;
+        head = new_node;
+        return;
+    }
+
+    else
+    {
+        clsNode* Current = head;
+
+        while (Current->next != NULL)
+        {
+            Current = Current->next;
+        }
+
+        Current->next = new_node;
+        new_node->prev = Current;
+    }
+}
+
 void PrintclsNodeDetails(clsNode* head)
 {
 
@@ -156,13 +191,13 @@ int main()
 
     cout << "\nLinked List Contenet:\n";
     PrintList(head);
-     
-    clsNode* N1 = Find(head, 5);   
-    InsertAfter(N1, 2007);
-     
-    cout << "\nLinked List Contenet:\n";
-    PrintList(head);
+    PrintListDetails(head);
 
+    InsertAtEnd(head, 2007);
+
+    cout << "\n\n\nLinked List Contenet after InsertAtEnd:\n";
+    PrintList(head);
+    PrintListDetails(head);
     system("pause>0");
     return 0;
 }
