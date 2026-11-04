@@ -240,6 +240,37 @@ void DeleteFirstNode(clsNode*& head)
     delete Temp;
 }
 
+void DeleteLastNode(clsNode*& head)
+{
+    /*
+       1-Traverse the list to find the last node.
+       2-Set the next pointer of the second-to-last node to NULL.
+       3-Delete the last node.
+   */
+
+    if (head == NULL) return;
+
+    if (head->next == NULL)
+    {
+        delete head;
+        head = NULL;
+        return;
+    }
+
+    clsNode* Current = head;
+    //We Find The Node Before The Last Node... 
+    while (Current->next->next != NULL)
+    {
+        Current = Current->next;
+    }
+
+    clsNode* temp = Current->next;
+    Current->next = NULL;
+    delete temp;
+
+}
+
+
 void PrintclsNodeDetails(clsNode* head)
 {
 
@@ -294,9 +325,9 @@ int main()
     PrintList(head);
     PrintListDetails(head);
 
-    DeleteFirstNode(head);
+    DeleteLastNode(head);
 
-    cout << "\n\n\nLinked List Contenet after Delete First Node :\n";
+    cout << "\n\n\nLinked List Contenet after Delete Last Node :\n";
     PrintList(head);
     PrintListDetails(head);
 
