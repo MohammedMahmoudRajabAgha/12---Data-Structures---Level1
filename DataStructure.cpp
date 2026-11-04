@@ -214,6 +214,31 @@ void DeleteNode(clsNode*& head, clsNode*& NodeToDelete)
     NodeToDelete = NULL;
 }
 
+void DeleteFirstNode(clsNode*& head)
+{
+    /*
+        1-Store a reference to the head node in a temporary variable.
+        2-Update the head pointer to point to the next node in the list.
+        3-Set the previous pointer of the new head to NULL.
+        4-Delete the temporary reference to the old head node.
+    */
+
+
+    if (head == NULL)
+    {
+        return;
+    }
+
+    clsNode* Temp = head;
+    head = head->next;
+
+    if (head != NULL)
+    {
+        head->prev = NULL;
+    }
+
+    delete Temp;
+}
 
 void PrintclsNodeDetails(clsNode* head)
 {
@@ -269,15 +294,12 @@ int main()
     PrintList(head);
     PrintListDetails(head);
 
-    clsNode* N1 = Find(head, 2);
-    
-    DeleteNode(head, N1);
+    DeleteFirstNode(head);
 
-    cout << "\n\n\nLinked List Contenet after Delete Node :\n";
+    cout << "\n\n\nLinked List Contenet after Delete First Node :\n";
     PrintList(head);
     PrintListDetails(head);
 
- 
     system("pause>0");
     return 0;
 }
