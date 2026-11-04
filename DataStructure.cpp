@@ -138,6 +138,83 @@ void InsertAtEnd(clsNode* &head, int value)
     }
 }
 
+//My Solution For Delete Node...
+
+//void DeleteNode(clsNode*& head, clsNode* &NodeToDelete)
+//{
+//
+//    if (head == NULL || NodeToDelete == NULL) 
+//    {
+//        return;
+//    }
+//
+//    if (NodeToDelete->next == NULL && NodeToDelete->prev == NULL)
+//    {
+//        head = NULL;
+//        delete NodeToDelete;
+//        return;
+//    }
+//    
+//    if (NodeToDelete->next != NULL)
+//    {
+//        if (NodeToDelete->prev == NULL)
+//        {
+//            //NodeToDelete->next->prev = NodeToDelete->prev;
+//            NodeToDelete->next->prev = NULL;
+//            head = NodeToDelete->next;
+//            delete NodeToDelete;
+//            return;
+//        }
+//
+//        NodeToDelete->next->prev = NodeToDelete->prev;
+//        NodeToDelete->prev->next = NodeToDelete->next;
+//        delete NodeToDelete;
+//        return;
+//    }
+//
+//    if (NodeToDelete->next == NULL)
+//    {
+//        //NodeToDelete->prev->next = NodeToDelete->next;
+//        NodeToDelete->prev->next = NULL;
+//        delete NodeToDelete;
+//        return;
+//    }
+//    
+//}
+void DeleteNode(clsNode*& head, clsNode*& NodeToDelete)
+{
+    /*
+        1-Set the next pointer of the previous node to the next pointer of the current node.
+        2-Set the previous pointer of the next node to the previous pointer of the current node.
+        3-Delete the current node.
+    */
+
+
+    if (head == NULL)
+    {
+        return;
+    }
+
+    if (head == NodeToDelete)
+    {
+        head = NodeToDelete->next;
+    }
+
+    if (NodeToDelete->next != NULL)
+    {
+        NodeToDelete->next->prev = NodeToDelete->prev;
+    }
+
+    if (NodeToDelete->prev != NULL)
+    {
+        NodeToDelete->prev->next = NodeToDelete->next;
+    }
+
+    delete NodeToDelete;
+    NodeToDelete = NULL;
+}
+
+
 void PrintclsNodeDetails(clsNode* head)
 {
 
@@ -178,7 +255,6 @@ void PrintList(clsNode* head)
 }
 
 
-
 int main()
 {
     clsNode* head = NULL;
@@ -193,13 +269,15 @@ int main()
     PrintList(head);
     PrintListDetails(head);
 
-    InsertAtEnd(head, 2007);
+    clsNode* N1 = Find(head, 2);
+    
+    DeleteNode(head, N1);
 
-    cout << "\n\n\nLinked List Contenet after InsertAtEnd:\n";
+    cout << "\n\n\nLinked List Contenet after Delete Node :\n";
     PrintList(head);
     PrintListDetails(head);
+
+ 
     system("pause>0");
     return 0;
 }
-
-
