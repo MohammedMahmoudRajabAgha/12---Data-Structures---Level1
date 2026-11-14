@@ -5,37 +5,32 @@ using namespace std;
 
 int main()
 {
-	map<string, int> Students;
+	map<int, string>students;
 
-	Students["Mo"] = 90;
-	Students["Ali"] = 80;
-	Students["Ahmed"] = 70;
+	students[701] = "Ali Agha";
+	students[702] = "Omar Agha";
+	students[703] = "Saleh Agha";
+	students[704] = "Koko Afha";
+	students[705] = "LOLO Agha";
 
-	cout << "\nPart 1 — Copy:\n";
+	cout << "\nPlease Enter Student ID ? ";
+	int ID;
+	cin >> ID;
 
-	for (auto Pair : Students)
+	auto it = students.find(ID);
+
+	if (it != students.end())
 	{
-		Pair.second += 10;
+		cout << "\nStudent Name : " << students[ID] << endl;
 	}
 
-	for (auto Pair : Students)
+	else
 	{
-		cout << Pair.second << endl;
+		cout << "\nStudent Not Found!";
 	}
 
-	cout << "\n***************************\n";
-	cout << "\nPart 2 — Reference\n";
+	string Name = students[999];
 
-	for (auto& Pair : Students)
-	{
-		Pair.second += 10;
-	}
-
-	for (auto Pair : Students)
-	{
-		cout << Pair.second << endl;
-	}
-
-	cout << "\n***************************\n";
+	cout << "\nStudent Name : " << Name << endl; //Empty
 
 }
