@@ -13,24 +13,31 @@ int main()
 	students[704] = "Koko Afha";
 	students[705] = "LOLO Agha";
 
-	cout << "\nPlease Enter Student ID ? ";
-	int ID;
-	cin >> ID;
+	
+	map<int, string>::iterator firstElement;
 
-	auto it = students.find(ID);
+	firstElement = students.begin();
 
-	if (it != students.end())
+	cout << "First Element :";
+	cout << firstElement->first << endl;
+	cout << firstElement->second << endl;
+
+	firstElement++;
+	cout << "Second Element :";
+	cout << firstElement->first << endl;
+	cout << firstElement->second << endl;
+
+	cout << "\n*********************\n";
+	cout << "\n*********************\n";
+
+	map<int, string>::iterator FE = students.begin();
+
+	for (short i = 0; i < students.size(); i++)
 	{
-		cout << "\nStudent Name : " << students[ID] << endl;
+		cout << FE->first << endl;
+		cout << FE->second << endl;
+		cout << "\n*********************\n";
+		FE++;
 	}
-
-	else
-	{
-		cout << "\nStudent Not Found!";
-	}
-
-	string Name = students[999];
-
-	cout << "\nStudent Name : " << Name << endl; //Empty
 
 }
