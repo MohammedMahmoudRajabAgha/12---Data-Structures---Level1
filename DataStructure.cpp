@@ -5,12 +5,37 @@ using namespace std;
 
 int main()
 {
-	pair<string, int>P1;
+	map<string, int> Students;
 
-	P1.first = "Mo Agha";
-	P1.second = 90;
+	Students["Mo"] = 90;
+	Students["Ali"] = 80;
+	Students["Ahmed"] = 70;
 
-	cout << P1.first << endl;
-	cout << P1.second << endl;
+	cout << "\nPart 1 — Copy:\n";
+
+	for (auto Pair : Students)
+	{
+		Pair.second += 10;
+	}
+
+	for (auto Pair : Students)
+	{
+		cout << Pair.second << endl;
+	}
+
+	cout << "\n***************************\n";
+	cout << "\nPart 2 — Reference\n";
+
+	for (auto& Pair : Students)
+	{
+		Pair.second += 10;
+	}
+
+	for (auto Pair : Students)
+	{
+		cout << Pair.second << endl;
+	}
+
+	cout << "\n***************************\n";
 
 }
