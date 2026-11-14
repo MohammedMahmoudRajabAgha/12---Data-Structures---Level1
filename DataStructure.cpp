@@ -3,42 +3,43 @@
 
 using namespace std;
 
-int main() 
+int main()
 {
-	// Declare a map with string keys and int values
-	map<string, int>studentGrades;
+	map<string, int>StudentGrades;
 
-	// Inserting grades for three students
-	studentGrades["Ali"] = 77;     // Assigning a grade of 77 to the student "Ali"
-	studentGrades["Ahmed"] = 85;   // Assigning a grade of 85 to the student "Ahmed"
-	studentGrades["Fadi"] = 95;    // Assigning a grade of 95 to the student "Fadi"
+	StudentGrades["MO Agha"] = 100;
+	StudentGrades["Ali Agha"] = 90;
+	StudentGrades["Ahmed Agha"] = 99;
+	StudentGrades["Omar Agha"] = 85;
+	StudentGrades["Shahed Agha"] = 88;
 
-	// Printing all map values
-	cout << "\nPrinting all map values..\n\n";
-	for (const auto & pair : studentGrades)
+	short i = 1;
+	for (const pair<const string, int>& Pairs : StudentGrades)
 	{
-		cout << "Student: " << pair.first << ", Grade: " << pair.second << endl;
-
+		cout << "\nStudent" << i << ": ";
+		cout << "\nStudent Name  : " << Pairs.first;
+		cout << "\nStudent Grade : " << Pairs.second;
+		cout << "\n************************************\n";
+		i++;
 	}
 
-	// Finding the grade for a specific student
-	string studentName = "Fadi";
-	if (studentGrades.find(studentName) != studentGrades.end())
-	{
-		cout << studentName << "'s grade: " << studentGrades[studentName] << endl;
-	}
-	else 
-	{
-		cout << "Grade not found for " << studentName << endl;
-	}
+	cout << "\nThe Number Of Student in MAP : " << StudentGrades.size();
 
-	 studentName = "Omar";
-	if (studentGrades.find(studentName) != studentGrades.end())
-	{
-		cout << studentName << "'s grade: " << studentGrades[studentName] << endl;
-	}
-	else
-	{
-		cout << "Grade not found for " << studentName << endl;
-	}
+	map<string, int>::iterator firstElement;
+
+	firstElement = StudentGrades.begin();
+	cout << "\n\nFirst Student in Map : ";
+	cout << "\nStudent Name : " << firstElement->first;
+	cout << "\nStudent Grade : " << firstElement->second;
+
+
+	map<string, int>::reverse_iterator lastElement;
+
+	lastElement = StudentGrades.rbegin();
+	cout << "\n\nLest Student in Map : ";
+	cout << "\nStudent Name : " << lastElement->first;
+	cout << "\nStudent Grade : " << lastElement->second;
+
+	cout << endl;
+
 }
