@@ -1,47 +1,36 @@
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
 
-// To See The Diff Between (union) and (struct) Replace (unoin) -> (struct)
 union MyUnion
 {
-	short unsigned shortValue;
-	float floatValue;
-	char charValue;
+    short shortValue;
+    float floatValue;
+    string stringValue;
+
+    MyUnion() {}
+
+    ~MyUnion() {}
 };
 
 int main()
 {
-	MyUnion myUnion;
-	
-	myUnion.shortValue = 10;
-	cout << "\nIinteger Value : " << myUnion.shortValue;//Active Member = .shortValue
+    MyUnion myUnion;
 
+    // Activate shortValue
+    myUnion.shortValue = 10;
 
-	myUnion.floatValue = 45.6f;
-	cout << "\nFloat Vlaue : " << myUnion.floatValue;//Active Member = .floatValue
+    cout << myUnion.shortValue << endl;
 
-	myUnion.charValue = 'M';
-	cout << "\nChar Valuen : " << myUnion.charValue;//Active Member = .charValue
+    // Destroy shortValue is unnecessary (fundamental type)
 
+    // Activate stringValue
+    new (&myUnion.stringValue) string("Mohammed");
 
-	cout << "\n*******************";
-	cout << "\nIinteger Value : " << myUnion.shortValue;//Undefined Behavior
-	cout << "\nFloat Vlaue    : " << myUnion.floatValue;//Undefined Behavior
-	cout << "\nChar Valuen    : " << myUnion.charValue;// M
+    cout << myUnion.stringValue << endl;
 
-	cout << "\n*******************";
-	cout << "\nIinteger Value : " << &myUnion.shortValue; //The Same Address For All Members
-	cout << "\nFloat Vlaue    : " << &myUnion.floatValue;//The Same Address For All Members
-	cout << "\nChar Valuen    : " << (void*) & myUnion.charValue;//The Same Address For All Members
+    // Destroy stringValue
+    myUnion.stringValue.~basic_string();
 
-	cout << "\n*******************";
-	cout << "\nObject                : " << sizeof(myUnion);// it equal to The biggest Memory Space in Union -> sizeof(myUnion)=sizeof(myUnion.floatValue)
-	cout << "\nIinteger Memore Space : " <<sizeof(myUnion.shortValue);// 2 Bytes
-	cout << "\nFloat Memore Space    : " << sizeof(myUnion.floatValue);// 4 Bytes
-	cout << "\nChar Memore Space     : " << sizeof(myUnion.charValue);// 1 Byte
-
-	
-
-	return 0;
+    return 0;
 }
