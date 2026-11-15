@@ -1,44 +1,47 @@
 #include<iostream>
-#include<map>
-
+#include<string>
 using namespace std;
 
-int main() 
+// To See The Diff Between (union) and (struct) Replace (unoin) -> (struct)
+union MyUnion
 {
-	// Declare a map with string keys and int values
-	map<string, int>studentGrades;
+	short unsigned shortValue;
+	float floatValue;
+	char charValue;
+};
 
-	// Inserting grades for three students
-	studentGrades["Ali"] = 77;     // Assigning a grade of 77 to the student "Ali"
-	studentGrades["Ahmed"] = 85;   // Assigning a grade of 85 to the student "Ahmed"
-	studentGrades["Fadi"] = 95;    // Assigning a grade of 95 to the student "Fadi"
+int main()
+{
+	MyUnion myUnion;
+	
+	myUnion.shortValue = 10;
+	cout << "\nIinteger Value : " << myUnion.shortValue;//Active Member = .shortValue
 
-	// Printing all map values
-	cout << "\nPrinting all map values..\n\n";
-	for (const auto & pair : studentGrades)
-	{
-		cout << "Student: " << pair.first << ", Grade: " << pair.second << endl;
 
-	}
+	myUnion.floatValue = 45.6f;
+	cout << "\nFloat Vlaue : " << myUnion.floatValue;//Active Member = .floatValue
 
-	// Finding the grade for a specific student
-	string studentName = "Fadi";
-	if (studentGrades.find(studentName) != studentGrades.end())
-	{
-		cout << studentName << "'s grade: " << studentGrades[studentName] << endl;
-	}
-	else 
-	{
-		cout << "Grade not found for " << studentName << endl;
-	}
+	myUnion.charValue = 'M';
+	cout << "\nChar Valuen : " << myUnion.charValue;//Active Member = .charValue
 
-	 studentName = "Omar";
-	if (studentGrades.find(studentName) != studentGrades.end())
-	{
-		cout << studentName << "'s grade: " << studentGrades[studentName] << endl;
-	}
-	else
-	{
-		cout << "Grade not found for " << studentName << endl;
-	}
+
+	cout << "\n*******************";
+	cout << "\nIinteger Value : " << myUnion.shortValue;//Undefined Behavior
+	cout << "\nFloat Vlaue    : " << myUnion.floatValue;//Undefined Behavior
+	cout << "\nChar Valuen    : " << myUnion.charValue;// M
+
+	cout << "\n*******************";
+	cout << "\nIinteger Value : " << &myUnion.shortValue; //The Same Address For All Members
+	cout << "\nFloat Vlaue    : " << &myUnion.floatValue;//The Same Address For All Members
+	cout << "\nChar Valuen    : " << (void*) & myUnion.charValue;//The Same Address For All Members
+
+	cout << "\n*******************";
+	cout << "\nObject                : " << sizeof(myUnion);// it equal to The biggest Memory Space in Union -> sizeof(myUnion)=sizeof(myUnion.floatValue)
+	cout << "\nIinteger Memore Space : " <<sizeof(myUnion.shortValue);// 2 Bytes
+	cout << "\nFloat Memore Space    : " << sizeof(myUnion.floatValue);// 4 Bytes
+	cout << "\nChar Memore Space     : " << sizeof(myUnion.charValue);// 1 Byte
+
+	
+
+	return 0;
 }
